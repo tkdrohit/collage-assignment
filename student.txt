@@ -1,0 +1,8 @@
+rohit singh,19cs06006,cse
+naveen kumar,15ec08444,ece
+shobhit saini,24df3345,me
+pravesh kumar,866688,hhj
+rohit singh,13cs06006,cse
+pravesh kumar,566688,hhj
+naveen kumar,12ec08444,ece
+naveen kumar,19ec08444,ece
