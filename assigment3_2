@@ -1,0 +1,125 @@
+#include <iostream>
+class node
+{
+    public:
+    int data;
+    node *next;
+    node(int data)
+    {
+
+        this->data=data;
+        this->next=NULL;
+    }
+};
+using namespace std;
+node *head=NULL;
+node* link(int data)
+{
+
+
+    if(head==NULL)
+    {
+      node *newnode = new node(data);
+      head=newnode;
+      return head;
+    }
+    else{
+        if(data<=head->data)
+        {
+             node *newnode = new node(data);
+             newnode->next=head;
+             head=newnode;
+
+        }
+        else{
+            node *temp,*temp1;
+            temp=head;
+            while(temp->data<data&&temp->next!=NULL)
+            {
+                temp1=temp;
+                temp=temp->next;
+            }
+            if(temp->next==NULL)
+            {
+                 node *newnode = new node(data);
+                 temp->next=newnode;
+                 return head;
+            }
+             node *newnode = new node(data);
+             temp1->next=newnode;
+             newnode->next=temp;
+
+        }
+        return head;
+    }
+
+}
+void print(node *head)
+{
+
+    while(head!=NULL)
+    {
+        cout<<head->data<<" ";
+    head=head->next;
+    }
+}
+node* remove_duplicate(node *head)
+{
+    node *temp;
+    temp=head;
+    while(temp->next!=NULL)
+    {
+        node *temp1,*temp2;
+        temp1=temp;
+        temp2=temp->next;
+        while(temp1->data==temp2->data&&temp2!=NULL)
+        {
+            node *temp3;
+            temp3=temp2;
+            temp2=temp2->next;
+            delete(temp3);
+        }
+        temp1->next=temp2;
+        temp=temp->next;
+    }
+    return head;
+}
+node* reverse3(node *head)
+{
+     node *crnt=head,*pre=NULL,*nxt=head->next;
+     while(crnt!=NULL)
+     {
+          crnt->next=pre;
+          pre=crnt;
+          crnt=nxt;
+          if(nxt==NULL)
+            break;
+          nxt=nxt->next;
+     }
+     return pre;
+}
+int main()
+{
+    node *head1;
+    head1=NULL;
+    int a[]={4,5,3,6,3,1,2,3};
+    int n=sizeof(a)/sizeof(a[0]);
+   // cout<<"enter the no of elements"<<endl;
+   // cin>>n;
+   // cout<<"enter the elements"<<endl;
+    //for(int i=0;i<n;i++)
+      //  cin>>a[i];
+
+    for(int i=0;i<n;i++)
+    {
+       head1 = link(a[i]);
+    }
+    print(head1);
+    cout<<endl;
+    head1=remove_duplicate(head1);
+    print(head1);
+    cout<<endl;
+    head1=reverse3(head1);
+    print(head1);
+    return 0;
+}
